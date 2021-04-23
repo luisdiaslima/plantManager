@@ -4,35 +4,15 @@ import {
     StyleSheet,
     View,
     Text,
-    TextInput,
-    KeyboardAvoidingView,
-    PlatformColor,
-    Platform,
 } from 'react-native';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 import { Button } from '../components/Button'
+import { useNavigation } from '@react-navigation/core';
 
 export function Confirmation() {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isFilled, setIsFilled] = useState(false);
-    const [name, setName] = useState<string>();
-
-
-    const handleInputBlur = useCallback(() => {
-        setIsFocused(false);
-        setIsFilled(!!name);
-    }, [name])
-
-    const handleInputFocus = useCallback(() => {
-        setIsFocused(true)
-    }, [])
-
-    const handleInputChange = useCallback((value: string) => {
-        setName(value);
-        setIsFilled(!!value)
-    }, [])
+    const navigation = useNavigation()
 
     return (
         <SafeAreaView style={styles.container}>
@@ -50,7 +30,7 @@ export function Confirmation() {
                     </Text>
 
                      <View style={styles.footer}>
-                        <Button title="Confirmar" />
+                        <Button title="Confirmar" onPress={() => navigation.navigate('PlantSelect')} />
                     </View>
                 </View>
 
